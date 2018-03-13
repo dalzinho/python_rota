@@ -30,10 +30,10 @@ class Availability:
     def who_can(self, job):
         return self.skills.get(job.task, set()) & self.vacations.get(job.date, set())
 
-
-
-
+    def assign_jobs(self, job_list, assignation_count):
+        assignations = [(job, list(self.who_can(job))[0]) for job in job_list]
+        
 availability = Availability(skills, dates)
 
-print(availability.who_can(jobs[1]))
+print(availability.assign_jobs(jobs))
 
